@@ -1,0 +1,69 @@
+﻿@model ErdemEmlak.Models.ilan
+@{
+    ViewBag.Title = "IlanDetay";
+}
+
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row mt-5">
+
+        <div class="col-lg-9">
+
+            <div class="card mt-4">
+                <img class="card-img-top img-fluid" src="~/Content/img/ilan/@Model.foto" alt="@Model.baslik">
+                <div class="card-body">
+                    <h3 class="card-title">@Model.baslik</h3>
+                    <h4>@Model.fiyat</h4>
+                    <p class="card-text">@Model.adres</p>
+                    <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                    4.0 stars
+                </div>
+            </div>
+            <!-- /.card -->
+
+            <div class="card card-outline-secondary my-4">
+                <div class="card-header">
+                    Açıklama
+                </div>
+                <div class="card-body">
+                    <p>@Model.aciklama</p>
+                    <hr>
+                    @if (Session["uyeOturum"] != null)
+                    {
+                        if (Session["uyeId"].ToString() == Model.uyeId.ToString())
+                        {
+                            <br /> <a href="~/Home/IlanDuzenle/@Model.ilanId" class="btn btn-warning">Düzenle</a>
+                            <a href="~/Home/IlanSil/@Model.ilanId" class="btn btn-danger">Sil</a>
+                        }
+                    }
+                    <hr />
+                    <a href="/Home/Ilanlar" class="btn btn-primary">İlanlara dön</a>
+                </div>
+            </div>
+            <!-- /.card -->
+
+        </div>
+        <!-- /.col-lg-9 -->
+
+        <div class="col-lg-3">
+            <h1 class="my-4">İlan Sahibi</h1>
+            <div class="list-group">
+                <p href="#" class="list-group-item active">@Model.Uye.Ad_Soyad</p>
+                <p class="list-group-item">
+                    <small>E-Posta</small><br />
+                    @Model.Uye.email <br />
+                    <small>Telefon</small><br />
+                    +@Model.Uye.telefon
+                </p>
+
+
+            </div>
+        </div>
+        <!-- /.col-lg-3 -->
+
+
+    </div>
+
+</div>
+<!-- /.container -->

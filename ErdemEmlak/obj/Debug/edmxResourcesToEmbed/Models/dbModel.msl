@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="db01ModelStoreContainer" CdmEntityContainer="db01Entities1">
+    <EntitySetMapping Name="ilans">
+      <EntityTypeMapping TypeName="db01Model.ilan">
+        <MappingFragment StoreEntitySet="ilan">
+          <ScalarProperty Name="ilanId" ColumnName="ilanId" />
+          <ScalarProperty Name="baslik" ColumnName="baslik" />
+          <ScalarProperty Name="fiyat" ColumnName="fiyat" />
+          <ScalarProperty Name="adres" ColumnName="adres" />
+          <ScalarProperty Name="aciklama" ColumnName="aciklama" />
+          <ScalarProperty Name="sehirId" ColumnName="sehirId" />
+          <ScalarProperty Name="foto" ColumnName="foto" />
+          <ScalarProperty Name="uyeId" ColumnName="uyeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sehirs">
+      <EntityTypeMapping TypeName="db01Model.Sehir">
+        <MappingFragment StoreEntitySet="Sehir">
+          <ScalarProperty Name="sehirId" ColumnName="sehirId" />
+          <ScalarProperty Name="sehirAdi" ColumnName="sehirAdi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Uyes">
+      <EntityTypeMapping TypeName="db01Model.Uye">
+        <MappingFragment StoreEntitySet="Uye">
+          <ScalarProperty Name="uyeId" ColumnName="uyeId" />
+          <ScalarProperty Name="kullaniciAdi" ColumnName="kullaniciAdi" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="pw" ColumnName="pw" />
+          <ScalarProperty Name="Ad_Soyad" ColumnName="Ad Soyad" />
+          <ScalarProperty Name="telefon" ColumnName="telefon" />
+          <ScalarProperty Name="uyeAdmin" ColumnName="uyeAdmin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

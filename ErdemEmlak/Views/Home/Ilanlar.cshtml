@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "Ilanlar";
+}
+
+<!-- Page Content -->
+<div class="container mt-5">
+
+    <div class="row mt-5">
+
+        <div class="col-lg-3">
+
+            <h3 class="my-4">Filtreler</h3>
+            @using (Html.BeginForm("ilanArama", "Home", FormMethod.Post))
+            {
+                <div class="input-group mb-3">
+                    <input type="text" name="deger" class="form-control" placeholder="İlan Ara" aria-describedby="button-addon2" required>
+                    <div class="input-group-append">
+                        <input type="submit" class="btn btn-outline-dark" id="button-addon2" value="Ara">
+                    </div>
+                </div>
+            }
+        <div class="list-group">
+            <div class="card my-4">
+                @{Html.RenderAction("Sehir", "Home"); }
+            </div>
+
+
+        </div>
+
+        </div>
+        <!-- /.col-lg-3 -->
+
+        <div class="col-lg-9 mt-5">
+
+            <div class="row">
+                @foreach (var ilan in Model)
+                {
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card h-100">
+                            <a href="#"><img class="card-img-top" src="~/Content/img/ilan/@ilan.foto" alt="@ilan.baslik"></a>
+                            <div class="card-body">
+                                <h4 class="card-title">
+                                    <a href="/Home/ilanDetay/@ilan.ilanId">@ilan.baslik</a>
+                                </h4>
+                                <h5>₺@ilan.fiyat</h5>
+                                <p class="card-text"> @ilan.adres  </p>
+                                </div>
+                                <div class="card-footer">
+                                    @Html.ActionLink("Ayrıntılar", "ilanDetay", new { id = ilan.ilanId }, new { @class = "btn btn-primary" })
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+
+            </div>
+            <!-- /.row -->
+
+        </div>
+        <!-- /.col-lg-9 -->
+
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->

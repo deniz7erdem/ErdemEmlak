@@ -1,0 +1,31 @@
+﻿@model ErdemEmlak.ViewModel.Sehirler
+@{
+    ViewBag.Title = "SehirEkle";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<h1>Şehir Ekle</h1>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        @using (Html.BeginForm("SehirEkle", "Admin", FormMethod.Post))
+        {
+
+            @Html.LabelFor(m => m.sehirAdi)
+            @Html.TextBoxFor(m => m.sehirAdi, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.sehirAdi, null, new { @class = "text-danger" })
+            <br />
+            <input type="submit" value="Kaydet" class="btn btn-success" />
+        }
+        <br />
+        @if (ViewBag.sonuc != null)
+        {
+            <div class="alert alert-success">@ViewBag.sonuc</div>
+        }
+        @if (ViewBag.hata != null)
+        {
+            <div class="alert alert-danger">@ViewBag.hata</div>
+        }
+    </div>
+</div>

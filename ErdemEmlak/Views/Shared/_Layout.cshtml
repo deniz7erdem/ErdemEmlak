@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Erdem Emlak - Özgür Emlak Portalı</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="~/Content/css/s-homepage.css" rel="stylesheet">
+    <style>
+        .masthead {
+            height: 100vh;
+            min-height: 500px;
+            background-image: url('https://source.unsplash.com/BtbjCFUvBXs/1920x1080');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/Home/Index">ErdemEmlak</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/Index">Ana Sayfa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/Ilanlar">İlanlar</a>
+                        <span class="sr-only">(current)</span>
+                    </li>
+                    @if (Session["uyeOturum"] == null)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Home/OturumAc">Giriş Yap</a>
+                        </li>
+                    }
+                    else
+                    {
+                        if (Session["uyeAdmin"].ToString() == "1")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="~/Admin/Index">Admin Paneli</a>
+                            </li>
+                        }
+                        <li class="nav-item">
+                            @Html.ActionLink("İlan Ekle", "ilanEkle", "Home", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Çıkış", "OturumKapat", "Home", new { returnUrl = Request.RawUrl }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/Home/Profil/@Session["uyeId"].ToString()">@Session["uyeKadi"].ToString()</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+    @RenderBody()
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Erdem Emlak 2020</p>
+        </div>
+        <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    @RenderSection("scripts", false)
+
+</body>
+
+</html>

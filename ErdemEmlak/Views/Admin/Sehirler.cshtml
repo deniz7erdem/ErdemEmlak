@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ErdemEmlak.Models.Sehir>
+@{
+    ViewBag.Title = "Sehirler";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Kategoriler</h2>
+<hr />
+@if (ViewBag.sonuc != null)
+{
+    <div class="alert alert-success">@ViewBag.sonuc</div>
+}
+@if (ViewBag.hata != null)
+{
+    <div class="alert alert-danger">@ViewBag.hata</div>
+}
+<div class="row">
+    <div class="col-md-12">
+        @Html.ActionLink("Şehir Ekle", "SehirEkle", null, new { @class = "btn btn-info" })
+        <br /><br />
+        <table class="table">
+            <tr class="bg-info">
+                <td>Id</td>
+                <td>Adı</td>
+                <td>Düzenle</td>
+                <td>Sil</td>
+            </tr>
+            @foreach (var seh in Model)
+            {
+                <tr>
+                    <td>@seh.sehirId</td>
+                    <td>@seh.sehirAdi</td>
+                    <td>
+                        @Html.ActionLink("Düzenle", "SehirDuzenle", new { id = seh.sehirId }, new { @class = "btn btn-warning" })
+
+                    </td>
+                    <td>
+                        @Html.ActionLink("Sil", "SehirSil", new { id = seh.sehirId }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+</div>

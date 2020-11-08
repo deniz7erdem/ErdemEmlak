@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ErdemEmlak.Models.ilan>
+@{
+    ViewBag.Title = "Ilanlar";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Ilanlar</h1>
+
+<hr />
+@if (ViewBag.sonuc != null)
+{
+    <div class="alert alert-success">@ViewBag.sonuc</div>
+}
+
+<div class="row">
+    <div class="col-md-12">
+        @Html.ActionLink("İlan Ekle", "IlanEkle", null, new { @class = "btn btn-info" })
+        <br /><br />
+        <table class="table">
+            <tr class="bg-info">
+                <td>Id</td>
+                <td>Foto</td>
+                <td>Başlık</td>
+                <td>Fiyat</td>
+                <td>Adres</td>
+                <td>Açıklama</td>
+                <td>Şehir</td>
+                <td>Düzenle</td>
+                <td>Sil</td>
+            </tr>
+            @foreach (var ilan in Model)
+            {
+        <tr>
+            <td>@ilan.ilanId</td>
+            <td><img src="~/Content/img/ilan/@ilan.foto" style="width:100px;" /></td>
+            <td>@ilan.baslik</td>
+            <td>@ilan.fiyat</td>
+            <td>@ilan.adres</td>
+            <td>@ilan.aciklama</td>
+            <td>@ilan.Sehir.sehirAdi</td>
+            <td>
+                @Html.ActionLink("Düzenle", "IlanDuzenle", new { id = ilan.ilanId }, new { @class = "btn btn-warning" })
+
+            </td>
+            <td>
+                @Html.ActionLink("Sil", "IlanSil", new { id = ilan.ilanId }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+            }
+
+        </table>
+
+    </div>
+</div>
+

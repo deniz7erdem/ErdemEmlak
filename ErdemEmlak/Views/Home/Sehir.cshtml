@@ -1,0 +1,3 @@
+﻿@model IEnumerable<ErdemEmlak.Models.Sehir>
+@foreach (var sehir in Model) { <a href="~/Home/IlanSehir/@sehir.sehirId" class="list-group-item">@sehir.sehirAdi</a>}
+    

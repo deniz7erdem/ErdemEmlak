@@ -1,0 +1,56 @@
+﻿@model ErdemEmlak.ViewModel.uyeModel
+@{
+    ViewBag.Title = "UyeEkle";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>UyeEkle</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        @using (Html.BeginForm("UyeEkle", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.LabelFor(m => m.kullaniciAdi)
+            @Html.TextBoxFor(m => m.kullaniciAdi, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.kullaniciAdi, null, new { @class = "text-danger" })
+            <br />
+            @Html.LabelFor(m => m.Ad_Soyad)
+            @Html.TextBoxFor(m => m.Ad_Soyad, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Ad_Soyad, null, new { @class = "text-danger" })
+            <br />
+            @Html.LabelFor(m => m.email)
+            @Html.TextBoxFor(m => m.email, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.email, null, new { @class = "text-danger" })
+            <br />
+            @Html.LabelFor(m => m.telefon)
+            @Html.TextBoxFor(m => m.telefon, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.telefon, null, new { @class = "text-danger" })
+            <br />
+
+            @Html.LabelFor(m => m.pw)
+            @Html.PasswordFor(m => m.pw, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.pw, null, new { @class = "text-danger" })
+            <br />
+            @Html.LabelFor(k => k.uyeAdmin)<br />
+            @Html.DropDownListFor(k => k.uyeAdmin, new List<SelectListItem>()
+    {
+        new SelectListItem() {Text = "Üye", Value = "0"},
+        new SelectListItem() {Text = "Admin", Value = "1"} }, new { @class = "form-control" })
+            @Html.ValidationMessageFor(k => k.uyeAdmin, null, new { @class = "text-danger" })
+            <br />
+            <input type="submit" value="Kaydet" class="btn btn-success" />
+
+        }
+
+        <br />
+        @if (ViewBag.hata != null)
+        {
+            <div class="alert alert-danger">@ViewBag.hata</div>
+        }
+        @if (ViewBag.sonuc != null)
+        {
+            <div class="alert alert-success">@ViewBag.sonuc</div>
+        }
+    </div>
+
+</div>

@@ -1,0 +1,128 @@
+﻿
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>ErdemEmlak Özgür Emlak Portalı</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="css/shop-homepage.css" rel="stylesheet">
+    <style>
+        .masthead {
+            height: 100vh;
+            min-height: 500px;
+            background-image: url('../../Content/img/bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/Home/Index">ErdemEmlak</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/Home/Index">
+                            Anasayfa
+                            <span class="sr-only">(bulunulan)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/Ilanlar">İlanlar</a>
+                    </li>
+                    @if (Session["uyeOturum"] == null)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Home/OturumAc">Giriş Yap</a>
+                        </li>
+                    }
+                    else
+                    {
+                        if (Session["uyeAdmin"].ToString() == "1")
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="~/Admin/Index">Admin Paneli</a>
+                            </li>
+                        }
+                        <li class="nav-item">
+                            @Html.ActionLink("İlan Ekle", "ilanEkle", "Home", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Çıkış", "OturumKapat", "Home", new { returnUrl = Request.RawUrl }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/Home/Profil/@Session["uyeId"].ToString()">@Session["uyeKadi"].ToString()</a> 
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Full Page Image Header with Vertically Centered Content -->
+    <header class="masthead">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12 text-center">
+                    <h1 class="font-weight-light text-light">Erdem Emlak Özgür Emlak Portalı</h1>
+                    <p class="light text-light">Hayalini aramaya başla</p>
+
+                    @using (Html.BeginForm("ilanArama", "Home", FormMethod.Post))
+                    {
+                        <div class="input-group mb-3">
+                            <input type="text" name="deger" class="form-control" placeholder="Nerede Yaşamak İstiyorsun ?" aria-describedby="button-addon2" required>
+                            <div class="input-group-append">
+                                <input type="submit" class="btn btn-outline-light" id="button-addon2" value="Ara">
+                            </div>
+                        </div>
+                    }
+                    </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Content -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="font-weight-light">Page Content</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus ab nulla dolorum autem nisi officiis
+                blanditiis voluptatem hic, assumenda aspernatur facere ipsam nemo ratione cumque magnam enim fugiat
+                reprehenderit expedita.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+        </div>
+        <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="/Content/vendor/jquery/jquery.min.js"></script>
+    <script src="/Content/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+
+</body>
+
+</html>

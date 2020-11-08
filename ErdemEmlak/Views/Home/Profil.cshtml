@@ -1,0 +1,34 @@
+﻿@model ErdemEmlak.Models.Uye
+@{
+    ViewBag.Title = "Profil";
+}
+
+
+
+<h2>Ilanlarim</h2>
+<div class="container">
+
+    <h3 class="row mt-5">@Model.kullaniciAdi Adlı Üye Makaleleri</h3><br />
+    <div class="row">
+
+        @foreach (var ilan in Model.ilans)
+        {
+            <div class="col-md-3">
+                <div class="card mb-3">
+
+
+
+
+
+                    <img class="card-img-top img-fluid" src="~/Content/img/ilan/@ilan.foto" alt="">
+                    <div class="card-body">
+                        <h3 class="card-title">@ilan.baslik</h3>
+                        <h4>₺@ilan.fiyat</h4>
+                        <p class="card-text">@ilan.adres</p>
+                        <a class="btn btn-primary" href="~/Home/IlanDetay/@ilan.ilanId">Görüntüle</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

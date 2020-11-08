@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+    <h1 class="mt-4">Dashboard</h1>
+
+<div class="row">
+    <div class="col-xl-4 col-md-4">
+        <div class="card bg-primary text-white mb-4">
+            <div class="card-body">Uye Sayısı: @ViewBag.uyeSay</div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <a class="small text-white stretched-link" href="/Admin/Uyeler">Detaylara Git</a>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-4 col-md-4">
+        <div class="card bg-success text-white mb-4">
+            <div class="card-body">İlan Sayısı: @ViewBag.ilanSay</div>
+            <div class="card-footer d-flex align-items-center justify-content-between">
+                <a class="small text-white stretched-link" href="/Admin/Ilanlar">Detaylara Git</a>
+                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+            </div>
+        </div>
+    </div><div class="col-xl-4 col-md-4">
+    <div class="card bg-secondary text-white mb-4">
+        <div class="card-body">Şehir Sayısı: @ViewBag.sehirSay</div>
+        <div class="card-footer d-flex align-items-center justify-content-between">
+            <a class="small text-white stretched-link" href="/Admin/Sehirler">Detaylara Git</a>
+            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+        </div>
+    </div>
+</div>
+
+</div>

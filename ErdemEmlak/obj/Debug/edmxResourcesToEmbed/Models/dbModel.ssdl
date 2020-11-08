@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db01Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ilan">
+    <Key>
+      <PropertyRef Name="ilanId" />
+    </Key>
+    <Property Name="ilanId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="baslik" Type="nvarchar" MaxLength="50" />
+    <Property Name="fiyat" Type="int" />
+    <Property Name="adres" Type="nvarchar" MaxLength="50" />
+    <Property Name="aciklama" Type="nvarchar(max)" />
+    <Property Name="sehirId" Type="int" />
+    <Property Name="foto" Type="nchar" MaxLength="100" />
+    <Property Name="uyeId" Type="int" />
+  </EntityType>
+  <EntityType Name="Sehir">
+    <Key>
+      <PropertyRef Name="sehirId" />
+    </Key>
+    <Property Name="sehirId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="sehirAdi" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Uye">
+    <Key>
+      <PropertyRef Name="uyeId" />
+    </Key>
+    <Property Name="uyeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="kullaniciAdi" Type="nvarchar" MaxLength="50" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" />
+    <Property Name="pw" Type="nvarchar" MaxLength="50" />
+    <Property Name="Ad Soyad" Type="nvarchar" MaxLength="50" />
+    <Property Name="telefon" Type="nchar" MaxLength="12" />
+    <Property Name="uyeAdmin" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ilan_Sehir">
+    <End Role="Sehir" Type="Self.Sehir" Multiplicity="0..1" />
+    <End Role="ilan" Type="Self.ilan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sehir">
+        <PropertyRef Name="sehirId" />
+      </Principal>
+      <Dependent Role="ilan">
+        <PropertyRef Name="sehirId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ilan_Uye">
+    <End Role="Uye" Type="Self.Uye" Multiplicity="0..1" />
+    <End Role="ilan" Type="Self.ilan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Uye">
+        <PropertyRef Name="uyeId" />
+      </Principal>
+      <Dependent Role="ilan">
+        <PropertyRef Name="uyeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="db01ModelStoreContainer">
+    <EntitySet Name="ilan" EntityType="Self.ilan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sehir" EntityType="Self.Sehir" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Uye" EntityType="Self.Uye" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ilan_Sehir" Association="Self.FK_ilan_Sehir">
+      <End Role="Sehir" EntitySet="Sehir" />
+      <End Role="ilan" EntitySet="ilan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ilan_Uye" Association="Self.FK_ilan_Uye">
+      <End Role="Uye" EntitySet="Uye" />
+      <End Role="ilan" EntitySet="ilan" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

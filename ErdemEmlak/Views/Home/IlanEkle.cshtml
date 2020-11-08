@@ -1,0 +1,53 @@
+﻿@model ErdemEmlak.ViewModel.ilanModel
+@{
+    ViewBag.Title = "IlanEkle";
+
+}
+
+
+<div class="container mt-5">
+    <h2 class="row">Ilan Ekle</h2>
+    <div class="row">
+        <div class="col-md-12">
+            @using (Html.BeginForm("IlanEkle", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+
+                @Html.LabelFor(m => m.baslik)
+                @Html.TextBoxFor(m => m.baslik, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.baslik, null, new { @class = "text-danger" })
+                <br />
+
+                @Html.LabelFor(m => m.fiyat)
+                @Html.TextBoxFor(m => m.fiyat, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.fiyat, null, new { @class = "text-danger" })
+                <br />
+                @Html.LabelFor(m => m.adres)
+                @Html.TextAreaFor(m => m.adres, new { @id = "Adres", @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.adres, null, new { @class = "text-danger" })
+                <br />
+                @Html.LabelFor(m => m.aciklama)
+                @Html.TextAreaFor(m => m.aciklama, new { @id = "Aciklama", @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.aciklama, null, new { @class = "text-danger" })
+                <br />
+                @Html.LabelFor(k => k.sehirId)<br />
+                @Html.DropDownListFor(k => k.sehirId, Model.sehirList, new { @class = "form-control" })
+                @Html.ValidationMessageFor(k => k.sehirId, null, new { @class = "text-danger" })<br />
+                @Html.LabelFor(m => m.foto)
+                @Html.TextBoxFor(m => m.foto, new { type = "file", @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.foto, null, new { @class = "text-danger" })
+                <br />
+                <input type="submit" value="Kaydet" class="btn btn-success" />
+            }
+            <br />
+            @if (ViewBag.sonuc != null)
+            {
+                <div class="alert alert-success">@ViewBag.sonuc</div>
+            }
+            @if (ViewBag.hata != null)
+            {
+                <div class="alert alert-danger">@ViewBag.hata</div>
+            }
+        </div>
+    </div>
+</div>
+
